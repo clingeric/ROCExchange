@@ -1,0 +1,125 @@
+<!DOCTYPE HTLM>
+
+<html>
+
+<head>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <!-- pooper.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <!-- Custom Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Merriweather" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../styles/site.css">
+
+    <!-- Include Required Prerequisites For Date Range Picker-->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />
+
+    <!-- Include Date Range Picker -->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+</head>
+
+<body>
+    <header>
+        <a style="margin: 0px" class="navbar-brand">ROC EXCHANGE</a>
+        <ul class="nav nav-tabs justify-content-end">
+            
+            <li class="nav-item">
+                <a class="nav-link" href="../index.html">HOME</a>
+            </li>
+            <li class="nav-item">
+                <a id="active" class="nav-link" href="share.html">SHARE</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="borrow.html">BORROW</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="account.html">ACCOUNT</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="about.html">ABOUT</a>
+            </li>
+        </ul>
+    </header>
+    <main>
+        <div id="banner" class="jumbotron">
+
+        </div>
+        <div>
+            <h1 class="text-center">
+                Post Availability
+            </h1>
+            <form class="share_form">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="fname">First Name:</label>
+                        <input type="text" class="form-control" id="fname" placeholder="First Name">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="lname">Last Name:</label>
+                        <input type="text" class="form-control" id="lname" placeholder="Last Name">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" placeholder="Email Address">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="endDate">Start and End Date:</label>
+                        <input type="text" class="form-control" name="datefilter" value="" placeholder="Date Range"/>
+                        <script type="text/javascript">
+                            $(function () {
+
+                                $('input[name="datefilter"]').daterangepicker({
+                                    autoUpdateInput: false,
+                                    locale: {
+                                        cancelLabel: 'Clear'
+                                    }
+                                });
+
+                                $('input[name="datefilter"]').on('apply.daterangepicker', function (ev, picker) {
+                                    $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+                                });
+
+                                $('input[name="datefilter"]').on('cancel.daterangepicker', function (ev, picker) {
+                                    $(this).val('');
+                                });
+
+                            });
+                        </script>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <
+                    </div>
+                    <div class="form-group col-md-6">
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer>
+
+        <div id="foot" class="jumbotron">
+            <a href="www.github.com/clingeric">J Development</a> | &copy; 2018. All Rights Reserved. |
+            <a href="about.html">About</a>
+        </div>
+
+    </footer>
+</body>
+
+</html>

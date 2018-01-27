@@ -1,3 +1,37 @@
 body {
     font-family: 'Inconsolata', monospace;
 }
+
+#banner {
+    text-align: center;
+    background-image: url(../media/img/cover.jpg);
+    background-size: 50rem;
+    background-repeat: no-repeat;
+    background-position: top;
+    height: 16rem;
+    
+}
+
+#foot {
+    margin-top: 2rem;
+    margin-bottom: -2rem;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.menu_item {
+    margin: .5rem;
+}
+
+#active {
+    background-color: #007BFF;
+    color: white;
+}
+
+.share_form {
+    margin: 3rem;
+}
+
+
