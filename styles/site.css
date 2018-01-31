@@ -34,4 +34,36 @@ body {
     margin: 3rem;
 }
 
+#readable_center {
+    margin: 5rem;
+    text-align: center;
+}
 
+.form_breathing_room {
+    margin: 2rem;
+}
+
+.flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.flex-item {
+    padding: 5px;
+    width: 200px;
+    height: 150px;
+    margin: 10px;
+    line-height: 150px;
+}
+
+.flex-item-photo {
+    width: 200px;
+    height: 150px;
+    
+}

@@ -43,13 +43,48 @@
     </header>
     <main>
         <div id="banner" class="jumbotron">
-            
+
         </div>
+        <h1 class="text-center">
+            Create an Account
+        </h1>
+        <hr>
+        <form id="readable_center" action="https://formspree.io/cling.eric@gmail.com" method="POST">
+            <div class="form-row form_breathing_room">
+                <div class="col-md-6">
+                    <label for="firstName">Enter First Name:</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                </div>
+                <div class="col-md-6">
+                    <label for="lastName">Enter Last Name:</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                </div>
+            </div>
+            <div class="form-row form_breathing_room">
+                <div class="col-md-12">
+                    <label for="email">Enter BYU.EDU Email Address:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Email Address">
+                    <small id="emailInfo" class="form-text text-muted">Why BYU.EDU? This helps to make sure that ROCExchange is limited to BYU students only. More information on how to get a BYU.EDU email address, <a href="https://eam.byu.edu/eam/">visit this site.</a></small>
+                </div>
+            </div>
+            <div class="form-row form_breathing_room">
+                <div class="col-md-6">
+                    <label for="password">Enter Password:</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password">
+                </div>
+                <div class="col-md-6">
+                    <label for="confirmPassword">Re-enter Password:</label>
+                    <input type="password" class="form-control" id="confirmPassword" placeholder="Password">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </main>
     <footer>
 
         <div id="foot" class="jumbotron">
-            <a href="www.github.com/clingeric">J Development</a> | &copy; 2018. All Rights Reserved. | <a href="about.html">About</a>
+            <a href="www.github.com/clingeric">J Development</a> | &copy; 2018. All Rights Reserved. |
+            <a href="about.html">About</a>
         </div>
 
     </footer>
