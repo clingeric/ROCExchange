@@ -17,26 +17,15 @@
         crossorigin="anonymous"></script>
     <!-- Custom Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Inconsolata|Merriweather" rel="stylesheet">
-    
-
-    <!-- Include Required Prerequisites For Date Range Picker-->
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />
-
-    <!-- Include Date Range Picker -->
-    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
-
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../styles/site.css">
+
+    <title>ROCExchange</title>
 </head>
 
 <body>
     <header>
-        <a style="margin: 0px" class="navbar-brand">ROC EXCHANGE</a>
         <ul class="nav nav-tabs justify-content-end">
-            
             <li class="nav-item">
                 <a class="nav-link" href="../index.html">HOME</a>
             </li>
@@ -62,7 +51,8 @@
             <h1 class="text-center">
                 Post Availability
             </h1>
-            <form class="share_form">
+            <!-- need to change div to form for functionality -->
+            <div class="share_form">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="fname">First Name:</label>
@@ -79,38 +69,56 @@
                         <input type="email" class="form-control" id="email" placeholder="Email Address">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="endDate">Start and End Date:</label>
-                        <input type="text" class="form-control" name="datefilter" value="" placeholder="Date Range"/>
-                        <script type="text/javascript">
-                            $(function () {
-
-                                $('input[name="datefilter"]').daterangepicker({
-                                    autoUpdateInput: false,
-                                    locale: {
-                                        cancelLabel: 'Clear'
-                                    }
-                                });
-
-                                $('input[name="datefilter"]').on('apply.daterangepicker', function (ev, picker) {
-                                    $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
-                                });
-
-                                $('input[name="datefilter"]').on('cancel.daterangepicker', function (ev, picker) {
-                                    $(this).val('');
-                                });
-
-                            });
-                        </script>
+                        <label for="phone">Phone:</label>
+                        <input type="text" class="form-control" id="phone" placeholder="Phone Number">
                     </div>
                 </div>
-                <div class="form-row text-center">
-                    <div class="form-group">
-                        <button type="button" class="btn btn-primary btn-lg" value="Submit">Submit</button>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="startDate">Start Date:</label>
+                        <input type="text" class="form-control" id="startDate" placeholder="Start Date" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="endDate">End Date:</label>
+                        <input type="text" class="form-control" id="endDate" placeholder="End Date" />
                     </div>
                 </div>
-            </form>
+                <div class="form-row">
+                        <div class="form-group col-md-12">
+                                <label for="price">Price:</label>
+                                <input type="text" class="form-control" id="price" placeholder="$ Price" />
+                        </div>
+                    </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#confirmation">Submit</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
+
+    <!-- Pop-up confirmation -->
+    <div class="modal fade text-center" id="confirmation" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmationTitle">Availability Posted</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h3>Thanks for using ROCExchange</h3>
+                        <h4>Your pass' availability has been successfully posted. Please update availability when you share it with someone.</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <footer>
 
         <div id="foot" class="jumbotron">
