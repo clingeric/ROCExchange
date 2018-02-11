@@ -1,0 +1,342 @@
+<!DOCTYPE HTLM>
+
+<html>
+
+<head>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <!-- pooper.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <!-- Custom Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Merriweather" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../styles/site.css">
+
+    <title>ROCExchange</title>
+</head>
+
+<body>
+    <header>
+        <ul class="nav nav-tabs justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="../index.html">HOME</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="share.html">SHARE</a>
+            </li>
+            <li class="nav-item">
+                <a id="active" class="nav-link" href="borrow.html">BORROW</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="account.html">ACCOUNT</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="about.html">ABOUT</a>
+            </li>
+        </ul>
+    </header>
+    <main>
+        <div id="banner" class="jumbotron">
+
+        </div>
+        <div id="readable-center">
+            <ul class="flex-container">
+                <li class="flex-item">
+                    <div class="borrow_card">
+                        <div>
+                            <img class="borrow_image" src="../media/img/roc.gif">
+                        </div>
+                        <div class="borrow_body text-center">
+                            <h4>2/23/18</h4>
+                            <h5>$5</h5>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalOne">Borrow</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="flex-item">
+                    <div class="borrow_card">
+                        <div>
+                            <img class="borrow_image" src="../media/img/roc.gif">
+                        </div>
+                        <div class="borrow_body text-center">
+                            <h4>2/23/18</h4>
+                            <h5>$10</h5>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalTwo">Borrow</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="flex-item">
+                    <div class="borrow_card">
+                        <div>
+                            <img class="borrow_image" src="../media/img/roc.gif">
+                        </div>
+                        <div class="borrow_body text-center">
+                            <h4>2/23/18</h4>
+                            <h5>$0</h5>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalThree">Borrow</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="flex-item">
+                    <div class="borrow_card">
+                        <div>
+                            <img class="borrow_image" src="../media/img/roc.gif">
+                        </div>
+                        <div class="borrow_body text-center">
+                            <h4>2/24/18</h4>
+                            <h5>$2</h5>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFour">Borrow</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="flex-item">
+                    <div class="borrow_card">
+                        <div>
+                            <img class="borrow_image" src="../media/img/roc.gif">
+                        </div>
+                        <div class="borrow_body text-center">
+                            <h4>2/25/18</h4>
+                            <h5>$0</h5>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFive">Borrow</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="flex-item">
+                    <div class="borrow_card">
+                        <div>
+                            <img class="borrow_image" src="../media/img/roc.gif">
+                        </div>
+                        <div class="borrow_body text-center">
+                            <h4>2/26/18</h4>
+                            <h5>$0</h5>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalSix">Borrow</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="flex-item">
+                    <div class="borrow_card">
+                        <div>
+                            <img class="borrow_image" src="../media/img/roc.gif">
+                        </div>
+                        <div class="borrow_body text-center">
+                            <h4>2/26/18</h4>
+                            <h5>$15</h5>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalSeven">Borrow</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="flex-item">
+                    <div class="borrow_card">
+                        <div>
+                            <img class="borrow_image" src="../media/img/roc.gif">
+                        </div>
+                        <div class="borrow_body text-center">
+                            <h4>3/3/18</h4>
+                            <h5>$0</h5>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEight">Borrow</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- Modals -->
+
+    <!-- Modal One -->
+    <div class="modal fade text-center" id="modalOne" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleOne">Borrow Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h2>Owner: Dan Smith</h2>
+                    <h3>Phone: 8014222222</h3>
+                    <h3>Email: dansmith@byu.edu</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Two -->
+    <div class="modal fade text-center" id="modalTwo" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleTwo">Borrow Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h2>Owner: Kanye West</h2>
+                    <h3>Phone: 8015672343</h3>
+                    <h3>Email: kanyewest@byu.edu</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Three -->
+    <div class="modal fade text-center" id="modalThree" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleThree">Borrow Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h2>Owner: Kevin Worthen</h2>
+                    <h3>Phone: 801422555</h3>
+                    <h3>Email: kev@byu.edu</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Four -->
+    <div class="modal fade text-center" id="modalFour" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleFour">Borrow Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h2>Owner: Daniel Zappala</h2>
+                    <h3>Phone: 8014227456</h3>
+                    <h3>Email: drz@byu.edu</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Five -->
+    <div class="modal fade text-center" id="modalFive" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleFive">Borrow Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h2>Owner: Eric Jenkins</h2>
+                    <h3>Phone: 8014222134</h3>
+                    <h3>Email: ericj@byu.edu</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Six -->
+    <div class="modal fade text-center" id="modalSix" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleSix">Borrow Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h2>Owner: Drake</h2>
+                    <h3>Phone: 8014228888</h3>
+                    <h3>Email: drizzy@byu.edu</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Seven -->
+    <div class="modal fade text-center" id="modalSeven" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleSeven">Borrow Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h2>Owner: Kendrick Lamar</h2>
+                    <h3>Phone: 8014229999</h3>
+                    <h3>Email: k.lamar@byu.edu</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Eight -->
+    <div class="modal fade text-center" id="modalEight" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleEight">Borrow Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h2>Owner: Chance</h2>
+                    <h3>Phone: 8014227979</h3>
+                    <h3>Email: chancethestudent@byu.edu</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer>
+
+        <div id="foot" class="jumbotron">
+            <a href="www.github.com/clingeric">J Development</a> | &copy; 2018. All Rights Reserved. |
+            <a href="about.html">About</a>
+        </div>
+
+    </footer>
+</body>
+
+</html>
