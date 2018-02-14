@@ -1,0 +1,76 @@
+<!DOCTYPE HTLM>
+
+<html>
+
+<head>
+    
+    <!-- popper.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <!-- Custom Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Merriweather" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../styles/site.css">
+    <!-- jQuery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script text="type/javascript" src="/scripts/scores.js"></script>
+
+    <title>ROCExchange</title>
+</head>
+
+<body>
+    <header>
+        <ul class="nav nav-tabs justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="../index.html">HOME</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="share.html">SHARE</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="borrow.html">BORROW</a>
+            </li>
+            <li class="nav-item">
+                <a id="active" class="nav-link" href="account.html">ACCOUNT</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="about.html">ABOUT</a>
+            </li>
+        </ul>
+    </header>
+    <main>
+        <div id="banner" class="jumbotron">
+
+        </div>
+        <h1 class="text-center">
+            NBA Scores
+        </h1>
+        <hr>
+        <form>
+            <div class="form-group">
+              <label>Enter a Programming Question:</label>
+              <input class="form-control" id="nbaInput" placeholder="e.g. Typescript for loops" type="text"></input>
+              <br/>
+              <input class="btn btn-primary" id="nbaSubmit" type="submit" value="Submit"></input>
+            </div>
+          </form>
+        <div class="text-center" id="nbaScores"></div>
+    </main>
+    <footer>
+
+        <div id="foot" class="jumbotron">
+                <a id="foot-content" href="https://www.github.com/clingeric">J Development</a> | &copy; 2018. All Rights Reserved. |
+            <a href="about.html">About</a>
+        </div>
+
+    </footer>
+</body>
+
+</html>

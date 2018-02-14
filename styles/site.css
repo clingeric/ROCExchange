@@ -77,7 +77,8 @@ body {
 }
 
 .borrow_card {
-    padding: 1rem;
+    padding: 2rem;
+    margin: 1rem;
     border: 2px solid black;
     border-radius: 5px; 
     background-color: #E9ECEF;
@@ -101,3 +102,40 @@ body {
     margin-top: 2rem;
 }
 
+
+.grid_container {
+    display: grid;
+    grid-template-areas: 
+        "empty share borrow twitter"
+        "empty photo photo twitter"
+        "empty photo photo twitter";
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-row-gap: 50px;
+    justify-items: center;
+}
+
+#share {
+    grid-area: share;
+}
+
+#borrow {
+    grid-area: borrow;
+}
+
+#twitter {
+    grid-area: twitter;
+}
+
+#photo {
+    grid-area: photo;
+}
+
+.winner {
+    color: green;
+    font-weight: bold;
+}
+
+.loser {
+    color: red;
+}
