@@ -25,28 +25,37 @@
 
 <body>
     <header>
-        <ul class="nav nav-tabs justify-content-end">
-            <li class="nav-item">
-                <a class="nav-link" href="../index.html">HOME</a>
-            </li>
-            <li class="nav-item">
-                <a id="active" class="nav-link" href="share.html">SHARE</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="borrow.html">BORROW</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="account.html">ACCOUNT</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="about.html">ABOUT</a>
-            </li>
+        <ul class="nav nav-tabs navbar-dark navbar-expand-md justify-content-between">
+            <a id="brand" class="navbar-brand">ROCExchange</a>
+            <button id="responsiveNav" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a id="active" class="nav-link active" href="share.html">SHARE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="borrow.html">BORROW</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="account.html">ACCOUNT</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">ABOUT</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="nba.html">API</a>
+                </li>
+            </div>
         </ul>
     </header>
     <main>
-        <div id="banner" class="jumbotron">
-
-        </div>
+            <div id="banner">
+                    <img class="image-fluid" id="cover" src="../media/img/cover.jpg">
+                </div>
         <div>
             <h1 class="text-center">
                 Post Availability
@@ -84,11 +93,11 @@
                     </div>
                 </div>
                 <div class="form-row">
-                        <div class="form-group col-md-12">
-                                <label for="price">Price:</label>
-                                <input type="text" class="form-control" id="price" placeholder="$ Price" />
-                        </div>
+                    <div class="form-group col-md-12">
+                        <label for="price">Price:</label>
+                        <input type="text" class="form-control" id="price" placeholder="$ Price" />
                     </div>
+                </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <button class="btn btn-primary" data-toggle="modal" data-target="#confirmation">Submit</button>
@@ -100,32 +109,33 @@
 
     <!-- Pop-up confirmation -->
     <div class="modal fade text-center" id="confirmation" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="confirmationTitle">Availability Posted</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <h3>Thanks for using ROCExchange</h3>
-                        <h4>Your pass' availability has been successfully posted. Please update availability when you share it with someone.</h4>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationTitle">Availability Posted</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3>Thanks for using ROCExchange</h3>
+                    <h4>Your pass' availability has been successfully posted. Please update availability when you share it with
+                        someone.
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
+    </div>
 
     <footer>
-
-        <div id="foot" class="jumbotron">
-                <a id="foot-content" href="https://www.github.com/clingeric">J Development</a> | &copy; 2018. All Rights Reserved. |
-            <a href="about.html">About</a>
+        <div id="foot">
+            <a id="foot-content" href="https://www.github.com/clingeric">J Development</a> | &copy; 2018. All Rights Reserved. |
+            <a href="pages/about.html">About</a> | Site Requires Use of a CORS plugin (<a href="https://addons.mozilla.org/en-US/firefox/addon/cors-everywhere/">for Firefox,</a> or
+            <a href="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en">for Chrome</a>)
         </div>
-
     </footer>
 </body>
 

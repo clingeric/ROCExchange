@@ -5,12 +5,22 @@ body {
 
 #banner {
     text-align: center;
-    background-image: url(../media/img/cover.jpg);
-    background-size: 50rem;
+    /* background-image: url(../media/img/cover.jpg);
+    background-size: 100% 16rem;
     background-repeat: no-repeat;
-    background-position: top;
-    height: 16rem;
+    background-position: top; */
+    background-color: lightgrey;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
     
+    
+}
+
+#cover {
+    max-width: 60%; 
+    height: auto;
 }
 
 #foot {
@@ -106,9 +116,9 @@ body {
 .grid_container {
     display: grid;
     grid-template-areas: 
-        "empty share borrow twitter"
-        "empty photo photo twitter"
-        "empty photo photo twitter";
+        "share borrow"
+        "photo photo"
+        "photo photo";
     grid-template-columns: auto;
     grid-template-rows: auto;
     grid-row-gap: 50px;
@@ -117,14 +127,17 @@ body {
 
 #share {
     grid-area: share;
+    width: 50%;
 }
 
 #borrow {
     grid-area: borrow;
+    width: 50%;
 }
 
 #twitter {
     grid-area: twitter;
+    
 }
 
 #photo {
@@ -138,4 +151,15 @@ body {
 
 .loser {
     color: red;
+}
+
+#brand {
+    color: #007BFF;
+    font-family: 'Inconsolata', monospace;
+    padding-left: 2rem;
+    padding-right: 1rem;
+}
+
+#responsiveNav {
+    background-color: #007BFF;
 }

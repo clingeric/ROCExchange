@@ -25,28 +25,37 @@
 
 <body>
     <header>
-        <ul class="nav nav-tabs justify-content-end">
-            <li class="nav-item">
-                <a class="nav-link" href="../index.html">HOME</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="share.html">SHARE</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="borrow.html">BORROW</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="account.html">ACCOUNT</a>
-            </li>
-            <li class="nav-item">
-                <a id="active" class="nav-link" href="about.html">ABOUT</a>
-            </li>
+        <ul class="nav nav-tabs navbar-dark navbar-expand-md justify-content-between">
+            <a id="brand" class="navbar-brand">ROCExchange</a>
+            <button id="responsiveNav" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="share.html">SHARE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="borrow.html">BORROW</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="account.html">ACCOUNT</a>
+                </li>
+                <li class="nav-item">
+                    <a id="active" class="nav-link active" href="about.html">ABOUT</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="nba.html">API</a>
+                </li>
+            </div>
         </ul>
     </header>
     <main>
-        <div id="banner" class="jumbotron">
-
-        </div>
+            <div id="banner">
+                    <img class="image-fluid" id="cover" src="../media/img/cover.jpg">
+                </div>
         <h1 class="text-center">
             FAQs
         </h1>
@@ -113,10 +122,12 @@
                     </div>
                     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
                         <div class="card-body">
-                            After <a href="account.html">creating an account</a> on the ROCExchange webiste, you will select a pass that you'd like to borrow from the list of available
-                            passes. After you've selected a pass, you can then contact the poster and arrange for payment
-                            and pick-up of the pass with your own discretion. ROCExchange is not responsible for any damages,
-                            losses, or problems associated with purchasing, picking-up, or using ROC passes.
+                            After
+                            <a href="account.html">creating an account</a> on the ROCExchange webiste, you will select a pass that you'd like to
+                            borrow from the list of available passes. After you've selected a pass, you can then contact
+                            the poster and arrange for payment and pick-up of the pass with your own discretion. ROCExchange
+                            is not responsible for any damages, losses, or problems associated with purchasing, picking-up,
+                            or using ROC passes.
                         </div>
                     </div>
                 </div>
@@ -124,12 +135,11 @@
         </div>
     </main>
     <footer>
-
-        <div id="foot" class="jumbotron">
-                <a id="foot-content" href="https://www.github.com/clingeric">J Development</a> | &copy; 2018. All Rights Reserved. |
-            <a href="about.html">About</a>
+        <div id="foot">
+            <a id="foot-content" href="https://www.github.com/clingeric">J Development</a> | &copy; 2018. All Rights Reserved. |
+            <a href="pages/about.html">About</a> | Site Requires Use of a CORS plugin (<a href="https://addons.mozilla.org/en-US/firefox/addon/cors-everywhere/">for Firefox,</a> or
+            <a href="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en">for Chrome</a>)
         </div>
-
     </footer>
 </body>
 

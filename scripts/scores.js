@@ -1,5 +1,3 @@
-// https://api.stackexchange.com/2.2/search?order=desc&sort=activity&site=stackoverflow&intitle=javascript
-
 $(document).ready(function () {
     $("#nbaSubmit").click(function (e) {
         e.preventDefault();
@@ -68,22 +66,37 @@ $(document).ready(function () {
             'WASHINGTON WIZARDS': 'WAS'
         }
         var value = $("#nbaInput").val();
+        var year = $("#yearInput").val();
         value = value.toUpperCase();
         if (teamsReverse[value] !== undefined) {
             value = teamsReverse[value];
         }
-        var myurl = "http://api.suredbits.com/nba/v0/games/" + value + "/2015?finshed=true";
+        console.log(value);
+        var myurl = "http://api.suredbits.com/nba/v0/games/" + value + "/" + year;
         $.ajax({
             url: myurl,
             dataType: "json",
+            jsonCallback: "logResults",
             success: function (json) {
-                json = json.sort((a, b) => Number(a.gameId) - Number(b.gameId));
+                json = json.sort((a, b) => Number(b.gameId) - Number(a.gameId));
                 var results = "";
+                var wins = 0;
+                var losses = 0;
                 if (json.length > 0) {
-                    console.log("Hello")
-                    results += "<h2><strong>" + teamsForward[value] + "'s 2018 Current Record</strong></h2><hr><br>"
+                    results += "<h2><strong>" + teamsForward[value] + "'s 2018 Current Record</strong></h2><p><em>Sorted by most recent date</em></p>"
+                    for (let i = 0; i < json.length; i++) {
+                        if(json[i].homeTeam.finalScore > json[i].awayTeam.finalScore) {
+                            wins++;
+                        }
+                        else if(json[i].homeTeam.finalScore < json[i].awayTeam.finalScore) {
+                            losses++
+                        }   
+                    }
+                    results += "<h5><strong><em>Wins:</em> " + wins + " <em>Losses:</em> " + losses + "</strong></h5><hr><br>"
                     for (var i = 0; i < json.length; i++) {
                         if (json[i].finished) {
+                            var wins;
+                            var losses;
                             console.log(json[i]);
                             if (json[i].homeTeam.finalScore > json[i].awayTeam.finalScore) {
                                 results += "<h3><span class='winner'>" + teamsForward[json[i].homeTeam.teamID] + "</span> vs. <span class='loser'>" + teamsForward[json[i].awayTeam.teamID] + "</span></h3>"
@@ -95,16 +108,22 @@ $(document).ready(function () {
                                 results += "<h4>TIE</h4>"
                             }
                             results += "<hr style='width: 50%'>"
-                            results += "<h4>" + json[i].homeTeam.finalScore + " - " + json[i].awayTeam.finalScore + "</h4>"
+                            results += "<h4><strong>" + json[i].homeTeam.finalScore + "</strong> - <strong>" + json[i].awayTeam.finalScore + "</strong></h4>"
                             results += "<h5>" + json[i].startTime.slice(4, 6) + '/' + json[i].startTime.slice(6, 8) + '/' + json[i].startTime.slice(0, 4) + "</h5>"
                             results += "<h6><em>" + json[i].seasonPhase + " Season</em></h6>"
+                            results += '<br>'
                         }
                     }
                 }
                 else {
-                    console.log("Sorry, no results were found. Please try enter a valid team name.")
+                    results += "Sorry, no results were found. Please try enter a valid team name."
                 }
                 $("#nbaScores").html(results);
+            },
+            error: function() {
+                console.log("error")
+                var results = "Sorry, no results were found. Please ensure that the team name and year are entered correctly."
+                alert(results);
             }
         });
     });

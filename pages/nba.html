@@ -3,23 +3,21 @@
 <html>
 
 <head>
-    
     <!-- popper.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
-    <!-- Bootstrap JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
     <!-- Custom Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Inconsolata|Merriweather" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../styles/site.css">
     <!-- jQuery CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
     <script text="type/javascript" src="/scripts/scores.js"></script>
 
     <title>ROCExchange</title>
@@ -27,49 +25,77 @@
 
 <body>
     <header>
-        <ul class="nav nav-tabs justify-content-end">
-            <li class="nav-item">
-                <a class="nav-link" href="../index.html">HOME</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="share.html">SHARE</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="borrow.html">BORROW</a>
-            </li>
-            <li class="nav-item">
-                <a id="active" class="nav-link" href="account.html">ACCOUNT</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="about.html">ABOUT</a>
-            </li>
+        <ul class="nav nav-tabs navbar-dark navbar-expand-md justify-content-between">
+            <a id="brand" class="navbar-brand">ROCExchange</a>
+            <button id="responsiveNav" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="share.html">SHARE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="borrow.html">BORROW</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="account.html">ACCOUNT</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">ABOUT</a>
+                </li>
+                <li class="nav-item">
+                    <a id="active" class="nav-link active" href="nba.html">API</a>
+                </li>
+            </div>
         </ul>
     </header>
     <main>
-        <div id="banner" class="jumbotron">
-
-        </div>
+            <div id="banner">
+                    <img class="image-fluid" id="cover" src="../media/img/cover.jpg">
+                </div>
         <h1 class="text-center">
             NBA Scores
         </h1>
         <hr>
-        <form>
-            <div class="form-group">
-              <label>Enter a Programming Question:</label>
-              <input class="form-control" id="nbaInput" placeholder="e.g. Typescript for loops" type="text"></input>
-              <br/>
-              <input class="btn btn-primary" id="nbaSubmit" type="submit" value="Submit"></input>
+        <form id="readable_center">
+            <div class="form-row form-group">
+                <div class="col-md-6">
+                    <label>Enter Team:</label>
+                    <input class="form-control" id="nbaInput" placeholder="e.g. Washington Wizards" type="text"></input>
+                </div>
+                <div class="col-md-6">
+                    <label>Enter Year:</label>
+                    <input class="form-control" id="yearInput" placeholder="e.g. 2015" type="text"></input>
+                    <small id="yearInfo" class="form-text text-muted">(Year must be after 2015)
+                        </small>
+                </div>
+                <br/>
             </div>
-          </form>
+            <!-- <div class="form-row form-group">
+                <label>Sort by Oldest Date or Newest Date:</label>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                      <input type="radio" name="Oldest" id="oldest"> Oldest
+                    </label>
+                    <label class="btn btn-primary">
+                      <input type="radio" name="Oldest" id="newest"> Newest
+                    </label>
+                  </div>
+            </div> -->
+            <input class="btn btn-primary" id="nbaSubmit" type="submit" value="Submit"></input>
+        </form>
         <div class="text-center" id="nbaScores"></div>
+        <div class="text-center" id="nbaError"></div>
     </main>
     <footer>
-
-        <div id="foot" class="jumbotron">
-                <a id="foot-content" href="https://www.github.com/clingeric">J Development</a> | &copy; 2018. All Rights Reserved. |
-            <a href="about.html">About</a>
+        <div id="foot">
+            <a id="foot-content" href="https://www.github.com/clingeric">J Development</a> | &copy; 2018. All Rights Reserved. |
+            <a href="pages/about.html">About</a> | Site Requires Use of a CORS plugin (<a href="https://addons.mozilla.org/en-US/firefox/addon/cors-everywhere/">for Firefox,</a> or
+            <a href="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en">for Chrome</a>)
         </div>
-
     </footer>
 </body>
 
