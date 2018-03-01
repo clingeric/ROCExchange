@@ -21,6 +21,7 @@
     <link href="https://fonts.googleapis.com/css?family=Inconsolata|Merriweather" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles/site.css">
+    <!-- Custom JS -->
 
     <title>ROCSwap</title>
 
@@ -28,32 +29,7 @@
 
 <body>
     <header>
-        <ul class="nav nav-tabs navbar-dark navbar-expand-md justify-content-between">
-            <a id="brand" class="navbar-brand">ROCSwap</a>
-            <button id="responsiveNav" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <li class="nav-item">
-                    <a id="active" class="nav-link active" href="index.html">HOME</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/share.html">SHARE</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/borrow.html">BORROW</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/account.html">ACCOUNT</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/about.html">ABOUT</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/nba.html">API</a>
-                </li>
-            </div>
-        </ul>
+        <roc-nav></roc-nav>
     </header>
     <main>
         <div id="banner">
@@ -79,12 +55,11 @@
     <footer>
 
         <div id="foot">
-            <a id="foot-content" href="https://www.github.com/clingeric/ROCSwap">J Development</a> | &copy; 2018. All Rights Reserved. |
-            <a href="pages/about.html">About</a> | Site Requires Use of a CORS plugin (<a href="https://addons.mozilla.org/en-US/firefox/addon/cors-everywhere/">for Firefox,</a> or
-            <a href="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en">for Chrome</a>)
+            <a id="foot-content" href="https://www.github.com/clingeric/ROCSwap">J Development</a> | &copy; 2018. All Rights Reserved. 
         </div>
 
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
 </body>
 
 </html>
