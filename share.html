@@ -20,66 +20,54 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../styles/site.css">
 
-    <title>ROCExchange</title>
+    <title>ROCSwap</title>
 </head>
 
 <body>
     <header>
-        <ul class="nav nav-tabs navbar-dark navbar-expand-md justify-content-between">
-            <a id="brand" class="navbar-brand">ROCExchange</a>
-            <button id="responsiveNav" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <li class="nav-item">
-                    <a class="nav-link" href="../index.html">HOME</a>
-                </li>
-                <li class="nav-item">
-                    <a id="active" class="nav-link active" href="share.html">SHARE</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="borrow.html">BORROW</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="account.html">ACCOUNT</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">ABOUT</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="nba.html">API</a>
-                </li>
-            </div>
-        </ul>
+        <div id="app1">
+            <ul class="nav nav-tabs navbar-dark navbar-expand-md justify-content-between">
+                <a id="brand" class="navbar-brand">ROCSwap</a>
+                <button id="responsiveNav" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <li v-for="item in navItems" class="nav-item">
+                        <a v-if="currentURL === item.link" class="nav-link active" :href="item.link">{{ item.text }}</a>
+                        <a v-else class="nav-link" :href="item.link">{{ item.text }}</a>
+                    </li>
+                </div>
+            </ul>
+        </div>
     </header>
     <main>
-            <div id="banner">
-                    <img class="image-fluid" id="cover" src="../media/img/cover.jpg">
-                </div>
+        <div id="banner">
+            <img class="image-fluid" id="cover" src="../media/img/cover.jpg">
+        </div>
         <div>
             <h1 class="text-center">
                 Post Availability
             </h1>
             <!-- need to change div to form for functionality -->
-            <div class="share_form">
+            <div id='app3' class="share_form">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="fname">First Name:</label>
-                        <input type="text" class="form-control" id="fname" placeholder="First Name">
+                        <input v-model="addedFName" type="text" class="form-control" id="fname" placeholder="First Name">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="lname">Last Name:</label>
-                        <input type="text" class="form-control" id="lname" placeholder="Last Name">
+                        <input v-model="addedLName" type="text" class="form-control" id="lname" placeholder="Last Name">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="email" placeholder="Email Address">
+                        <input v-model="addedEmail" type="email" class="form-control" id="email" placeholder="Email Address">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="phone">Phone:</label>
-                        <input type="text" class="form-control" id="phone" placeholder="Phone Number">
+                        <input v-model="addedPhone" type="text" class="form-control" id="phone" placeholder="Phone Number">
                     </div>
                 </div>
                 <div class="form-row">
@@ -108,35 +96,17 @@
     </main>
 
     <!-- Pop-up confirmation -->
-    <div class="modal fade text-center" id="confirmation" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmationTitle">Availability Posted</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h3>Thanks for using ROCExchange</h3>
-                    <h4>Your pass' availability has been successfully posted. Please update availability when you share it with
-                        someone.
-                    </h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
+    <div id='app4'>
+        <share-confirmation></share-confirmation>
     </div>
-
-    <footer>
-        <div id="foot">
-                <a id="foot-content" href="https://www.github.com/clingeric/ROCExchange">J Development</a> | &copy; 2018. All Rights Reserved. |
-            <a href="pages/about.html">About</a> | Site Requires Use of a CORS plugin (<a href="https://addons.mozilla.org/en-US/firefox/addon/cors-everywhere/">for Firefox,</a> or
-            <a href="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en">for Chrome</a>)
-        </div>
+    
+    <footer id="app2">
+        <roc-footer></roc-footer>
     </footer>
+    <!-- Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <!-- Custom JS -->
+    <script src="scripts/script.js"></script>
 </body>
 
 </html>
