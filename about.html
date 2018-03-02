@@ -20,114 +20,50 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../styles/site.css">
 
-    <title>ROCExchange</title>
+    <title>ROCSwap</title>
 </head>
 
 <body>
     <header>
-        <ul class="nav nav-tabs navbar-dark navbar-expand-md justify-content-between">
-            <a id="brand" class="navbar-brand">ROCExchange</a>
-            <button id="responsiveNav" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <li class="nav-item">
-                    <a class="nav-link" href="../index.html">HOME</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="share.html">SHARE</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="borrow.html">BORROW</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="account.html">ACCOUNT</a>
-                </li>
-                <li class="nav-item">
-                    <a id="active" class="nav-link active" href="about.html">ABOUT</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="nba.html">API</a>
-                </li>
-            </div>
-        </ul>
+        <div id="app1">
+            <ul class="nav nav-tabs navbar-dark navbar-expand-md justify-content-between">
+                <a id="brand" class="navbar-brand">ROCSwap</a>
+                <button id="responsiveNav" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <li v-for="item in navItems" class="nav-item">
+                        <a v-if="currentURL === item.link" class="nav-link active" :href="item.link">{{ item.text }}</a>
+                        <a v-else class="nav-link" :href="item.link">{{ item.text }}</a>
+                    </li>
+                </div>
+            </ul>
+        </div>
     </header>
     <main>
-            <div id="banner">
-                    <img class="image-fluid" id="cover" src="../media/img/cover.jpg">
-                </div>
+        <div id="banner">
+            <img class="image-fluid" id="cover" src="../media/img/cover.jpg">
+        </div>
         <h1 class="text-center">
             FAQs
         </h1>
         <hr>
         <div id="readable_center">
-            <div id="accordion">
-                <div class="card">
-                    <div class="card-header" id="headingOne">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Do I have to pay to use the ROCExchange?
-                            </button>
-                        </h5>
-                    </div>
-
-                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                        <div class="card-body">
-                            No. ROCExchange is a free service available for all BYU students to enjoy BYU sports. If there is a cost associated with
-                            a pass, that is to be paid to the student letting you borrow his or her pass, not to the ROCExchange
-                            website.
+            <div id='app4'>
+                <div id="accordion">
+                    <div v-for="entry in qa" class="card">
+                        <div class="card-header" :id="'heading' + entry.id">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" :data-target="'#collapse' + entry.id" aria-expanded="false"
+                                    aria-controls="collapseFour">
+                                    {{ entry.question }}
+                                </button>
+                            </h5>
                         </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingTwo">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Why did you start ROCExchange?
-                            </button>
-                        </h5>
-                    </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                        <div class="card-body">
-                            I think BYU sports are fun, and that everyone should be able to go to as many BYU events as they'd like to. But sometimes
-                            the cost of the ROC pass and busy scheudles get in the way of being able to go to as many events
-                            as you'd like. So if you're in the group of those who can't afford a ROC pass, you can borrow
-                            one for a low cost or free. If you're in the group of those who can't attend a game because you're
-                            busy, then you can share your pass for a cost or free. This way everyone can get full use out
-                            of everyone's ROC passes.
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingThree">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                Is the ROCExchange associated with BYU?
-                            </button>
-                        </h5>
-                    </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                        <div class="card-body">
-                            No. This is a personal project that has absolutely no connection to BYU, BYU Athetics, or any official BYU organization.
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingFour">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                How do I borrow a pass?
-                            </button>
-                        </h5>
-                    </div>
-                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                        <div class="card-body">
-                            After
-                            <a href="account.html">creating an account</a> on the ROCExchange webiste, you will select a pass that you'd like to
-                            borrow from the list of available passes. After you've selected a pass, you can then contact
-                            the poster and arrange for payment and pick-up of the pass with your own discretion. ROCExchange
-                            is not responsible for any damages, losses, or problems associated with purchasing, picking-up,
-                            or using ROC passes.
+                        <div :id="'collapse' + entry.id" class="collapse" aria-labelledby="'heading' + entry.id" data-parent="#accordion">
+                            <div class="card-body">
+                                {{ entry.answer }}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -135,12 +71,14 @@
         </div>
     </main>
     <footer>
-        <div id="foot">
-                <a id="foot-content" href="https://www.github.com/clingeric/ROCExchange">J Development</a> | &copy; 2018. All Rights Reserved. |
-            <a href="pages/about.html">About</a> | Site Requires Use of a CORS plugin (<a href="https://addons.mozilla.org/en-US/firefox/addon/cors-everywhere/">for Firefox,</a> or
-            <a href="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en">for Chrome</a>)
-        </div>
+        <footer id="app2">
+            <roc-footer></roc-footer>
+        </footer>
     </footer>
+    <!-- Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <!-- Custom JS -->
+    <script src="scripts/script.js"></script>
 </body>
 
 </html>

@@ -8,7 +8,7 @@
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
-    <!-- pooper.js CDN -->
+    <!-- popper.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
     <!-- Bootstrap CSS -->
@@ -21,7 +21,6 @@
     <link href="https://fonts.googleapis.com/css?family=Inconsolata|Merriweather" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles/site.css">
-    <!-- Custom JS -->
 
     <title>ROCSwap</title>
 
@@ -29,7 +28,20 @@
 
 <body>
     <header>
-        <roc-nav></roc-nav>
+        <div id="app1">
+            <ul class="nav nav-tabs navbar-dark navbar-expand-md justify-content-between">
+                <a id="brand" class="navbar-brand">ROCSwap</a>
+                <button id="responsiveNav" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <li v-for="item in navItems" class="nav-item">
+                        <a v-if="currentURL === item.link" class="nav-link active" :href="item.link">{{ item.text }}</a>
+                        <a v-else class="nav-link" :href="item.link">{{ item.text }}</a>
+                    </li>
+                </div>
+            </ul>
+        </div>
     </header>
     <main>
         <div id="banner">
@@ -52,14 +64,13 @@
             </div>
         </div>
     </main>
-    <footer>
-
-        <div id="foot">
-            <a id="foot-content" href="https://www.github.com/clingeric/ROCSwap">J Development</a> | &copy; 2018. All Rights Reserved. 
-        </div>
-
+    <footer id="app2">
+        <roc-footer></roc-footer>
     </footer>
+    <!-- Vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <!-- Custom JS -->
+    <script src="scripts/script.js"></script>
 </body>
 
 </html>
