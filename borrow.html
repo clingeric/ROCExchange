@@ -20,331 +20,114 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../styles/site.css">
 
-    <title>ROCExchange</title>
+    <title>ROCSwap</title>
 </head>
 
 <body>
     <header>
-        <ul class="nav nav-tabs navbar-dark navbar-expand-md justify-content-between">
-            <a id="brand" class="navbar-brand">ROCExchange</a>
-            <button id="responsiveNav" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <li class="nav-item">
-                    <a class="nav-link" href="../index.html">HOME</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="share.html">SHARE</a>
-                </li>
-                <li class="nav-item">
-                    <a id="active" class="nav-link active" href="borrow.html">BORROW</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="account.html">ACCOUNT</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">ABOUT</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="nba.html">API</a>
-                </li>
-            </div>
-        </ul>
+        <div id="app1">
+            <ul class="nav nav-tabs navbar-dark navbar-expand-md justify-content-between">
+                <a id="brand" class="navbar-brand">ROCSwap</a>
+                <button id="responsiveNav" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <li v-for="item in navItems" class="nav-item">
+                        <a v-if="currentURL === item.link" class="nav-link active" :href="item.link">{{ item.text }}</a>
+                        <a v-else class="nav-link" :href="item.link">{{ item.text }}</a>
+                    </li>
+                </div>
+            </ul>
+        </div>
     </header>
     <main>
-            <div id="banner">
-                    <img class="image-fluid" id="cover" src="../media/img/cover.jpg">
-                </div>
+        <div id="banner">
+            <img class="image-fluid" id="cover" src="../media/img/cover.jpg">
+        </div>
         <div id="readable-center">
-            <div class="row">
-                <div class="col-lg-4 col-md-3">
-                    <div class="borrow_card">
-                        <div>
-                            <img class="borrow_image" src="../media/img/roc.gif">
-                        </div>
-                        <div class="borrow_body text-center">
-                            <h4>2/23/18</h4>
-                            <h5>$5</h5>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalOne">Borrow</button>
+            <div id="app3">
+                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#share-modal">
+                    Share Pass
+                </button>
+                <div class="row">
+                    <div class="col-lg-4 col-md-3" v-for="user in users">
+                        <borrow-card :price='user.price' :availability='user.availableFrom + " - " + user.availableTo' :id='user.id'></borrow-card>
+                    </div>
+                </div>
+                <div v-for="user in users">
+                    <borrow-modal :fname='user.fName' :lname='user.lName' :phone='user.phone' :email='user.email' :id='user.id'></borrow-modal>
+                </div>
+                <div class="modal fade text-center" id="share-modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div children="modal-header">
+                                <h5 class="modal-title" id="shareModalTitle">Swap Pass</h5>
+                            </div>
+                            <div class="modal-body">
+                                <form v-if="!submitted" @submit.prevent="addUser">
+                                    <div class="share_form">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="fname">First Name:</label>
+                                                <input v-model="addedFName" autocomplete='given-name' type="text" class="form-control" id="fname" placeholder="First Name">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="lname">Last Name:</label>
+                                                <input v-model="addedLName" autocomplete='family-name' type="text" class="form-control" id="lname" placeholder="Last Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="email">Email:</label>
+                                                <input v-model="addedEmail" autocomplete='email' type="email" class="form-control" id="email" placeholder="Email Address">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="phone">Phone:</label>
+                                                <input v-model="addedPhone" autocomplete='tel-national' type="text" class="form-control" id="phone" placeholder="Phone Number">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="startDate">Start Date:</label>
+                                                <input v-model="addedAvailableFrom" type="text" class="form-control" id="startDate" placeholder="Start Date" />
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="endDate">End Date:</label>
+                                                <input v-model="addedAvailableTo" type="text" class="form-control" id="endDate" placeholder="End Date" />
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <label for="price">Price:</label>
+                                                <input v-model="addedPrice" type="text" class="form-control" id="price" placeholder="$ Price" />
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <button class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div v-else>
+                                    <h4>Thanks for posting your pass!</h4>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" @click="resetForm" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-3">
-                    <div class="borrow_card">
-                        <div>
-                            <img class="borrow_image" src="../media/img/roc.gif">
-                        </div>
-                        <div class="borrow_body text-center">
-                            <h4>2/23/18</h4>
-                            <h5>$10</h5>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalTwo">Borrow</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-3">
-                    <div class="borrow_card">
-                        <div>
-                            <img class="borrow_image" src="../media/img/roc.gif">
-                        </div>
-                        <div class="borrow_body text-center">
-                            <h4>2/23/18</h4>
-                            <h5>$0</h5>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalThree">Borrow</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-3">
-                    <div class="borrow_card">
-                        <div>
-                            <img class="borrow_image" src="../media/img/roc.gif">
-                        </div>
-                        <div class="borrow_body text-center">
-                            <h4>2/24/18</h4>
-                            <h5>$2</h5>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFour">Borrow</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-3">
-                    <div class="borrow_card">
-                        <div>
-                            <img class="borrow_image" src="../media/img/roc.gif">
-                        </div>
-                        <div class="borrow_body text-center">
-                            <h4>2/25/18</h4>
-                            <h5>$0</h5>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFive">Borrow</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-3">
-                    <div class="borrow_card">
-                        <div>
-                            <img class="borrow_image" src="../media/img/roc.gif">
-                        </div>
-                        <div class="borrow_body text-center">
-                            <h4>2/26/18</h4>
-                            <h5>$0</h5>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalSix">Borrow</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-3">
-                    <div class="borrow_card">
-                        <div>
-                            <img class="borrow_image" src="../media/img/roc.gif">
-                        </div>
-                        <div class="borrow_body text-center">
-                            <h4>2/26/18</h4>
-                            <h5>$15</h5>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalSeven">Borrow</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-3">
-                    <div class="borrow_card">
-                        <div>
-                            <img class="borrow_image" src="../media/img/roc.gif">
-                        </div>
-                        <div class="borrow_body text-center">
-                            <h4>3/3/18</h4>
-                            <h5>$0</h5>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEight">Borrow</button>
-                        </div>
-                    </div>
-                </div>
-                </ul>
             </div>
     </main>
-
-    <!-- Modals -->
-
-    <!-- Modal One -->
-    <div class="modal fade text-center" id="modalOne" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitleOne">Borrow Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h2>Owner: Dan Smith</h2>
-                    <h3>Phone: 8014222222</h3>
-                    <h3>Email: dansmith@byu.edu</h3>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Two -->
-    <div class="modal fade text-center" id="modalTwo" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitleTwo">Borrow Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h2>Owner: Kanye West</h2>
-                    <h3>Phone: 8015672343</h3>
-                    <h3>Email: kanyewest@byu.edu</h3>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Three -->
-    <div class="modal fade text-center" id="modalThree" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitleThree">Borrow Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h2>Owner: Kevin Worthen</h2>
-                    <h3>Phone: 801422555</h3>
-                    <h3>Email: kev@byu.edu</h3>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Four -->
-    <div class="modal fade text-center" id="modalFour" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitleFour">Borrow Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h2>Owner: Daniel Zappala</h2>
-                    <h3>Phone: 8014227456</h3>
-                    <h3>Email: drz@byu.edu</h3>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Five -->
-    <div class="modal fade text-center" id="modalFive" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitleFive">Borrow Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h2>Owner: Eric Jenkins</h2>
-                    <h3>Phone: 8014222134</h3>
-                    <h3>Email: ericj@byu.edu</h3>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Six -->
-    <div class="modal fade text-center" id="modalSix" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitleSix">Borrow Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h2>Owner: Drake</h2>
-                    <h3>Phone: 8014228888</h3>
-                    <h3>Email: drizzy@byu.edu</h3>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Seven -->
-    <div class="modal fade text-center" id="modalSeven" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitleSeven">Borrow Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h2>Owner: Kendrick Lamar</h2>
-                    <h3>Phone: 8014229999</h3>
-                    <h3>Email: k.@byu.edu</h3>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Eight -->
-    <div class="modal fade text-center" id="modalEight" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitleEight">Borrow Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h2>Owner: Chance</h2>
-                    <h3>Phone: 8014227979</h3>
-                    <h3>Email: chancethestudent@byu.edu</h3>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <footer>
-        <div id="foot">
-                <a id="foot-content" href="https://www.github.com/clingeric/ROCExchange">J Development</a> | &copy; 2018. All Rights Reserved. |
-            <a href="pages/about.html">About</a> | Site Requires Use of a CORS plugin (<a href="https://addons.mozilla.org/en-US/firefox/addon/cors-everywhere/">for Firefox,</a> or
-            <a href="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en">for Chrome</a>)
-        </div>
+    <footer id="app2">
+        <roc-footer></roc-footer>
     </footer>
+    <!-- Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <!-- Custom JS -->
+    <script src="scripts/script.js"></script>
 </body>
 
 </html>
