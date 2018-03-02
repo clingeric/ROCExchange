@@ -25,25 +25,37 @@
 
 <body>
     <header>
-        <div id="app1">
-            <ul class="nav nav-tabs navbar-dark navbar-expand-md justify-content-between">
-                <a id="brand" class="navbar-brand">ROCSwap</a>
-                <button id="responsiveNav" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarContent">
-                    <li v-for="item in navItems" class="nav-item">
-                        <a v-if="currentURL === item.link" class="nav-link active" :href="item.link">{{ item.text }}</a>
-                        <a v-else class="nav-link" :href="item.link">{{ item.text }}</a>
-                    </li>
-                </div>
-            </ul>
-        </div>
+        <ul class="nav nav-tabs navbar-dark navbar-expand-md justify-content-between">
+            <a id="brand" class="navbar-brand">ROCExchange</a>
+            <button id="responsiveNav" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a id="active" class="nav-link active" href="share.html">SHARE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="borrow.html">BORROW</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="account.html">ACCOUNT</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">ABOUT</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="nba.html">API</a>
+                </li>
+            </div>
+        </ul>
     </header>
     <main>
-        <div id="banner">
-            <img class="image-fluid" id="cover" src="../media/img/cover.jpg">
-        </div>
+            <div id="banner">
+                    <img class="image-fluid" id="cover" src="../media/img/cover.jpg">
+                </div>
         <div>
             <h1 class="text-center">
                 Post Availability
