@@ -52,11 +52,6 @@ body {
     margin: 3rem;
 }
 
-#readable_center {
-    margin: 5rem;
-    text-align: center;
-}
-
 .form_breathing_room {
     margin: 2rem;
 }
@@ -162,4 +157,9 @@ body {
 
 #responsiveNav {
     background-color: #007BFF;
+}
+
+#readable_center {
+    margin: 5rem;
+    text-align: center;
 }
