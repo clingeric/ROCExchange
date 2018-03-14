@@ -1,3 +1,3 @@
 # ROCSwap
-Open-source project to help BYU students easily exchange ROC passes.
+Open-source, Vue-based, webpack, node.js project to help BYU students easily swap ROC passes.
 
