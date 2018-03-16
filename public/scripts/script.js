@@ -89,27 +89,29 @@ Vue.component('borrow-modal', {
 Vue.component('borrow-card', {
     props: ['price', 'availability', 'id'],
     template:
-        `<div class="borrow_card">
-                <div>
-                    <img class="borrow_image" src="../media/img/roc.gif">
+        `<div>
+            <a data-toggle="modal" :data-target="'#modal' + id">
+                <div class="borrow_card" >
+                    <img class="borrow_image" src="../media/img/pass.JPG">
                 </div>
-                <div class="borrow_body text-center">
+            </a>
+            <div class="borrow_body text-center">
                 <h4>{{ availability }}</h4>
                 <h5>{{ price }}</h5>
-                <button type="button" class="btn btn-primary" data-toggle="modal" :data-target="'#modal' + id">Borrow</button>
             </div>
-        </div>`
+        </div>
+        `
 })
+
+const bus = new Vue();
 
 var app1 = new Vue({
     el: '#app1',
     data: {
         navItems: [
-            { id: 0, text: 'HOME', link: '/index.html' },
-            { id: 1, text: 'SHARE', link: '/share.html' },
-            { id: 2, text: 'BORROW', link: '/borrow.html' },
-            { id: 3, text: 'ACCOUNT', link: '/account.html' },
-            { id: 4, text: 'ABOUT', link: '/about.html' },
+            { id: 0, text: 'SWAP', link: '/swap.html' },
+            { id: 1, text: 'ACCOUNT', link: '/account.html' },
+            { id: 2, text: 'ABOUT', link: '/about.html' },
         ],
         currentURL: window.location.pathname
     }
@@ -121,18 +123,13 @@ var app2 = new Vue({
 })
 
 var app3 = new Vue({
+
     el: '#app3',
+    created: function () {
+        this.getPasses();
+    },
     data: {
-        users: [
-            { id: 0, fName: 'Dan', lName: 'Smith', phone: '8014222222', email: 'dan@byu.edu', availableFrom: '5/23/19', availableTo: '7/7/19', price: '$0' },
-            { id: 1, fName: 'Kendrick', lName: 'Lamar', phone: '8014224321', email: 'k.@byu.edu', availableFrom: '6/7/19', availableTo: '7/5/19', price: '$3' },
-            { id: 2, fName: 'Vince', lName: 'Staples', phone: '8014228360', email: 'norfnorf@byu.edu', availableFrom: '5/2/19', availableTo: '5/7/19', price: '$6' },
-            { id: 3, fName: 'Kanye', lName: 'West', phone: '8014228221', email: 'yeezy@byu.edu', availableFrom: '7/3/19', availableTo: '7/7/19', price: '$0' },
-            { id: 4, fName: 'Tupac', lName: 'Shakur', phone: '8014229932', email: 'tupac@byu.edu', availableFrom: '2/7/19', availableTo: '3/7/19', price: '$3' },
-            { id: 5, fName: 'Chance', lName: '', phone: '8014227979', email: 'chancethestudent@byu.edu', availableFrom: '6/7/19', availableTo: '7/7/19', price: '$2' },
-            { id: 6, fName: 'Lecrae', lName: '', phone: '8014221167', email: 'lecrae@byu.edu', availableFrom: '5/4/19', availableTo: '5/7/19', price: '$2' },
-            { id: 7, fName: 'Danny', lName: 'Glover', phone: '8014223005', email: 'childish@byu.edu', availableFrom: '6/12/19', availableTo: '6/17/19', price: '$3' }
-        ],
+        passes: [],
         addedFName: '',
         addedLName: '',
         addedPhone: '',
@@ -141,23 +138,47 @@ var app3 = new Vue({
         addedAvailableTo: '',
         addedPrice: '',
         submitted: false,
+        currentUser: '',
     },
     methods: {
-        addUser: function () {
-            this.addedPrice = '$' + this.addedPrice 
-            this.users.push({ id: this.users.length, fName: this.addedFName, lName: this.addedLName, phone: this.addedPhone, email: this.addedEmail, availableFrom: this.addedAvailableFrom, availableTo: this.addedAvailableTo, price:this.addedPrice });
-            this.addedFName= '';
-            this.addedLName= '';
-            this.addedPhone= '';
-            this.addedEmail= '';
-            this.addedAvailableFrom= '';
-            this.addedAvailableTo= '';
-            this.addedPrice= '';
-            this.users = this.users.sort(function(a,b) {return (a.availableFrom > b.availableFrom) ? 1 : ((b.availableFrom > a.availableFrom) ? -1 : 0);} );
-            this.submitted = true;
+        listen: function () {
+            bus.$on('set-current-user', currentUser => this.currentUser = currentUser);
         },
-        resetForm: function() {
+        addPass: function () {
+            axios.post("api/passes", {
+                fName: this.addedFName,
+                lName: this.addedLName,
+                phone: this.addedPhone,
+                email: this.addedEmail,
+                availableFrom: this.addedAvailableFrom,
+                availableTo: this.addedAvailableTo,
+                price: '$' + this.addedPrice,
+            }).then(response => {
+                this.addedFName = '';
+                this.addedLName = '';
+                this.addedPhone = '';
+                this.addedEmail = '';
+                this.addedAvailableFrom = '';
+                this.addedAvailableTo = '';
+                this.addedPrice = '';
+                this.submitted = true;
+                this.getPasses();
+                this.passes = this.passes.sort(function (a, b) { return (a.availableFrom > b.availableFrom) ? 1 : ((b.availableFrom > a.availableFrom) ? -1 : 0); });
+                return true;
+            }).catch(err => {
+
+            });
+        },
+        resetForm: function () {
             this.submitted = false;
+        },
+        getPasses: function () {
+            axios.get('api/passes').then(Response => {
+                this.passes = Response.data;
+                return true;
+            }).catch(err => {
+
+            });
         }
     },
 })
@@ -184,10 +205,103 @@ var app5 = new Vue({
 var app6 = new Vue({
     el: '#app6',
     data: {
-        currentUser: ''
+        addedEmail: '',
+        addedPassword: '',
+        found: false,
+        users: [],
+        addedFName: '',
+        addedLName: '',
+        addedPhone: '',
+        currentUser: '',
     },
+    created: function () {
+        this.getUsers();
+    },
+    methods: {
+        getUsers: function () {
+            axios.get('api/users').then(response => {
+                this.users = response.data;
+                return true;
+            }).catch(err => {
+
+            });
+        },
+        setCurrentUser: function (currentUser) {
+            console.log("I ran yo!");
+            bus.$emit('set-current-user', currentUser);
+        },
+        login: function () {
+            if (this.users.length > 0) {
+                for (let user of this.users) {
+                    if (user.email === this.addedEmail) {
+                        this.found = true;
+                        console.log(user.fName);
+                        this.currentUser = user.fName;
+                        this.setCurrentUser(this.currentUser);
+                        break;
+                    }
+                    else {
+                        console.log(user.fName);
+                        this.found = false;
+                    }
+                }
+            }
+            if (this.found === true) {
+                this.found = false;
+                window.location.replace('/swap.html')
+
+            }
+            else {
+                $('#signUpModal').modal('show');
+            }
+        },
+    }
 })
 
-var app6 = new Vue({
+var app7 = new Vue({
     el: '#app7',
+    data: {
+        users: [],
+        addedFName: '',
+        addedLName: '',
+        addedPhone: '',
+        addedEmail: '',
+        addedPassword: '',
+        addedPassword2: '',
+    },
+    created: function () {
+        this.getUsers();
+    },
+    methods: {
+        getUsers: function () {
+            axios.get('api/users').then(response => {
+                this.users = response.data;
+                return true;
+            }).catch(err => {
+
+            });
+        },
+        signUp: function () {
+            axios.post('api/users', {
+                fName: this.addedFName,
+                lName: this.addedLName,
+                phone: this.addedPhone,
+                email: this.addedEmail,
+                password: this.addedPassword,
+            }).then(response => {
+                this.addedFName = '';
+                this.addedLName = '';
+                this.addedPhone = '';
+                this.addedEmail = '';
+                this.addedPassword = '';
+                this.addedPassword2 = '';
+                return true;
+
+            }).catch(err => {
+
+            });
+            $('#signUpModal').modal('hide');
+            app6.getUsers();
+        }
+    }
 })

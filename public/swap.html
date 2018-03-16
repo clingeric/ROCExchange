@@ -17,6 +17,8 @@
         crossorigin="anonymous"></script>
     <!-- Custom Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Inconsolata|Merriweather" rel="stylesheet">
+    <!-- Buefy Icons  -->
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../styles/site.css">
 
@@ -46,16 +48,23 @@
         </div>
         <div id="readable-center">
             <div id="app3">
+                <div id="splash">
+                    <h2>{{ currentUser }}</h2>
+                </div>
+                <div id="no_pass" v-if="passes.length === 0">
+                    <h3>It looks like there are no passes to swap :(</h3>
+                    <h4>But we'd love for you to share one!</h4>
+                </div>
                 <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#share-modal">
                     Share Pass
                 </button>
                 <div class="row">
-                    <div class="col-lg-4 col-md-3" v-for="user in users">
-                        <borrow-card :price='user.price' :availability='user.availableFrom + " - " + user.availableTo' :id='user.id'></borrow-card>
+                    <div class="col-lg-4 col-md-3" v-for="pass in passes">
+                        <borrow-card :price='pass.price' :availability='pass.availableFrom + " - " + pass.availableTo' :id='pass.id'></borrow-card>
                     </div>
                 </div>
-                <div v-for="user in users">
-                    <borrow-modal :fname='user.fName' :lname='user.lName' :phone='user.phone' :email='user.email' :id='user.id'></borrow-modal>
+                <div v-for="pass in passes">
+                    <borrow-modal :fname='pass.fName' :lname='pass.lName' :phone='pass.phone' :email='pass.email' :id='pass.id'></borrow-modal>
                 </div>
                 <div class="modal fade text-center" id="share-modal" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -64,7 +73,7 @@
                                 <h5 class="modal-title" id="shareModalTitle">Swap Pass</h5>
                             </div>
                             <div class="modal-body">
-                                <form v-if="!submitted" @submit.prevent="addUser">
+                                <form v-if="!submitted" @submit.prevent="addPass">
                                     <div class="share_form">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
@@ -124,6 +133,9 @@
     <footer id="app2">
         <roc-footer></roc-footer>
     </footer>
+    <!-- Axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM="
+        crossorigin="anonymous"></script>
     <!-- Vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
     <!-- Custom JS -->

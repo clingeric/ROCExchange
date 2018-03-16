@@ -1,10 +1,8 @@
-<!DOCTYPE HTML>
+<!DOCTYPE HTLM>
 
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -20,10 +18,9 @@
     <!-- Custom Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Inconsolata|Merriweather" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles/site.css">
+    <link rel="stylesheet" href="../styles/site.css">
 
     <title>ROCSwap</title>
-
 </head>
 
 <body>
@@ -45,27 +42,38 @@
     </header>
     <main>
         <div id="banner">
-            <img class="image-fluid" id="cover" src="/media/img/cover.jpg">
+            <img class="image-fluid" id="cover" src="../media/img/cover.jpg">
         </div>
-        <div class="readable_center">
-            <div class="grid_container">
-                <div id="empty">
-
-                </div>
-                <a id="borrow" class="menu_item" href="borrow.html">
-                    <button type="button" class="btn btn-primary btn-lg btn-block">BORROW</button>
-                </a>
-                <a id="share" class="menu_item" href="share.html">
-                    <button type="button" class="btn btn-primary btn-lg btn-block">SHARE</button>
-                </a>
-                <div id="photo" class="text-center">
-                    <img id="splash_image" src="media/img/ROC.jpg">
+        <h1 class="text-center">
+            FAQs
+        </h1>
+        <hr>
+        <div id="readable_center">
+            <div id='app4'>
+                <div id="accordion">
+                    <div v-for="entry in qa" class="card">
+                        <div class="card-header" :id="'heading' + entry.id">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" :data-target="'#collapse' + entry.id" aria-expanded="false"
+                                    aria-controls="collapseFour">
+                                    {{ entry.question }}
+                                </button>
+                            </h5>
+                        </div>
+                        <div :id="'collapse' + entry.id" class="collapse" aria-labelledby="'heading' + entry.id" data-parent="#accordion">
+                            <div class="card-body">
+                                {{ entry.answer }}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
-    <footer id="app2">
-        <roc-footer></roc-footer>
+    <footer>
+        <footer id="app2">
+            <roc-footer></roc-footer>
+        </footer>
     </footer>
     <!-- Vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
