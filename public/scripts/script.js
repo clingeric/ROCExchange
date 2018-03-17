@@ -27,15 +27,6 @@ Vue.component('roc-nav-content', {
 </li>`
 })
 
-Vue.component('terms-of-service', {
-    template: '\
-      <div v-once>\
-        <h1>Terms of Service</h1>\
-        ... a lot of static content ...\
-      </div>\
-    '
-})
-
 Vue.component('share-confirmation', {
     template:
         `<div class="modal fade text-center" id="confirmation" tabindex="-1" role="dialog">
@@ -62,7 +53,7 @@ Vue.component('share-confirmation', {
 })
 
 Vue.component('borrow-modal', {
-    props: ['fname', 'lname', 'phone', 'email', 'id'],
+    props: ['fname', 'lname', 'phone', 'email', 'id', 'current'],
     template:
         `<div class="modal fade text-center" :id="'modal' + id" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -83,7 +74,7 @@ Vue.component('borrow-modal', {
                 </div>
             </div>
         </div>
-    </div>`
+    </div>`,
 })
 
 Vue.component('borrow-card', {
@@ -91,7 +82,8 @@ Vue.component('borrow-card', {
     template:
         `<div>
             <a data-toggle="modal" :data-target="'#modal' + id">
-                <div class="borrow_card" >
+                <div class="borrow_card">
+                   
                     <img class="borrow_image" src="../media/img/pass.JPG">
                 </div>
             </a>
@@ -103,8 +95,6 @@ Vue.component('borrow-card', {
         `
 })
 
-const bus = new Vue();
-
 var app1 = new Vue({
     el: '#app1',
     data: {
@@ -114,6 +104,19 @@ var app1 = new Vue({
             { id: 2, text: 'ABOUT', link: '/about.html' },
         ],
         currentURL: window.location.pathname
+    },
+    methods: {
+        clearCurrentUser: function () {
+            axios.delete('/api/user').then(response => {
+
+            }).catch(err => {
+
+            });
+        },
+        logout: function () {
+            this.clearCurrentUser();
+            window.location.replace('/index.html')
+        }
     }
 })
 
@@ -127,13 +130,10 @@ var app3 = new Vue({
     el: '#app3',
     created: function () {
         this.getPasses();
+        this.getCurrentUser();
     },
     data: {
         passes: [],
-        addedFName: '',
-        addedLName: '',
-        addedPhone: '',
-        addedEmail: '',
         addedAvailableFrom: '',
         addedAvailableTo: '',
         addedPrice: '',
@@ -141,23 +141,25 @@ var app3 = new Vue({
         currentUser: '',
     },
     methods: {
-        listen: function () {
-            bus.$on('set-current-user', currentUser => this.currentUser = currentUser);
+        getCurrentUser: function () {
+            axios.get('/api/user').then(response => {
+                this.currentUser = response.data;
+                return true;
+            }).catch(err => {
+
+            });
         },
+
         addPass: function () {
             axios.post("api/passes", {
-                fName: this.addedFName,
-                lName: this.addedLName,
-                phone: this.addedPhone,
-                email: this.addedEmail,
+                fName: this.currentUser.fName,
+                lName: this.currentUser.lName,
+                phone: this.currentUser.phone,
+                email: this.currentUser.email,
                 availableFrom: this.addedAvailableFrom,
                 availableTo: this.addedAvailableTo,
                 price: '$' + this.addedPrice,
             }).then(response => {
-                this.addedFName = '';
-                this.addedLName = '';
-                this.addedPhone = '';
-                this.addedEmail = '';
                 this.addedAvailableFrom = '';
                 this.addedAvailableTo = '';
                 this.addedPrice = '';
@@ -179,6 +181,14 @@ var app3 = new Vue({
             }).catch(err => {
 
             });
+        },
+        removePass: function(id) {
+            axios.delete('/api/passes/' + id).then(response => {
+                this.getPasses();
+                return true;
+            }).catch(err => {
+
+            })
         }
     },
 })
@@ -192,14 +202,51 @@ var app4 = new Vue({
             { id: 2, question: 'Is the ROCSwap associated with BYU?', answer: 'No. This is a personal project that has absolutely no connection to BYU, BYU Athletics, or any official BYU organization.' },
             { id: 3, question: 'How do I borrow a pass?', answer: 'After creating an account on the ROCSwap website, you will select a pass that you\'d like to borrow from the list of available passes. After you\'ve selected a pass, you can then contact the poster and arrange for payment and pick-up of the pass with your own discretion. ROCSwap is not responsible for any damages, losses, or problems associated with purchasing, picking-up, or using ROC passes.' },
         ]
-    }
+    },
 })
 
 var app5 = new Vue({
     el: '#app5',
     data: {
+        addedFName: '',
+        addedLName: '',
+        addedPhone: '',
+        addedEmail: '',
+        addedPassword: '',
+        addedPassword2: '',
+        currentUser: {},
+    },
+    created: function () {
+        this.getCurrentUser();
+    },
+    methods: {
+        editUser: function () {
+            axios.put('api/users/' + this.currentUser.userId, {
+                fName: this.addedFName,
+                lName: this.addedLName,
+                phone: this.addedPhone,
+                email: this.addedEmail,
+                password: this.addedPassword,
+            }).then(response => {
+                this.addedFName = '';
+                this.addedLName = '';
+                this.addedPhone = '';
+                this.addedEmail = '';
+                this.addedPassword = '';
+                this.addedPassword2 = '';
+                return true;
+            }).catch(err => {
+            });
+        },
+        getCurrentUser: function () {
+            axios.get('/api/user').then(response => {
+                this.currentUser = response.data;
+                return true;
+            }).catch(err => {
 
-    }
+            });
+        },
+    },
 })
 
 var app6 = new Vue({
@@ -226,22 +273,29 @@ var app6 = new Vue({
 
             });
         },
+
         setCurrentUser: function (currentUser) {
-            console.log("I ran yo!");
-            bus.$emit('set-current-user', currentUser);
+            axios.post('api/user', {
+                userId: currentUser.userId,
+                fName: currentUser.fName,
+                lName: currentUser.lName,
+                email: currentUser.email,
+                phone: currentUser.phone
+            }).then(response => {
+                return true;
+            }).catch(err => {
+
+            });
         },
         login: function () {
             if (this.users.length > 0) {
                 for (let user of this.users) {
                     if (user.email === this.addedEmail) {
                         this.found = true;
-                        console.log(user.fName);
-                        this.currentUser = user.fName;
-                        this.setCurrentUser(this.currentUser);
+                        this.setCurrentUser(user);
                         break;
                     }
                     else {
-                        console.log(user.fName);
                         this.found = false;
                     }
                 }

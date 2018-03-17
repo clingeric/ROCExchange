@@ -49,7 +49,9 @@ body {
 }
 
 .share_form {
-    margin: 3rem;
+    margin-right: 3rem;
+    margin-left: 3rem;
+    margin-bottom: 3rem;
 }
 
 .form_breathing_room {
@@ -85,8 +87,6 @@ body {
     margin: 1rem;
     border-radius: 10px; 
     box-shadow: 5px 10px 8px #888888;
-    position: relative;
-
 }
 
 .borrow_body {
@@ -168,4 +168,30 @@ body {
 #no_pass {
     text-align: center;
     margin: 2rem;
+}
+
+.modal-subtitle {
+    text-align: center;
+    margin: 1rem;
+    font-size: 1.5rem;
+}
+
+.remove_card {
+    background-color: black;
+    color: white;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 0;
+    right: 10;
+    border-radius: 15px;
+    border-color: white;
+    border-width: 3px;
+    border-style: solid;
+    text-align: center;
+    font-weight: bold;
+}
+
+.card_div {
+    position: relative;
 }

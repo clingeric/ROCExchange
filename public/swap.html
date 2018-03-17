@@ -38,6 +38,9 @@
                         <a v-if="currentURL === item.link" class="nav-link active" :href="item.link">{{ item.text }}</a>
                         <a v-else class="nav-link" :href="item.link">{{ item.text }}</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href='/logout.html' @click="logout">LOG OUT</a>
+                    </li>
                 </div>
             </ul>
         </div>
@@ -49,7 +52,7 @@
         <div id="readable-center">
             <div id="app3">
                 <div id="splash">
-                    <h2>{{ currentUser }}</h2>
+                    <h2 class="text-center">Welcome {{ currentUser.fName }}!</h2>
                 </div>
                 <div id="no_pass" v-if="passes.length === 0">
                     <h3>It looks like there are no passes to swap :(</h3>
@@ -59,8 +62,11 @@
                     Share Pass
                 </button>
                 <div class="row">
-                    <div class="col-lg-4 col-md-3" v-for="pass in passes">
+                    <div class="col-lg-4 col-md-3" class="card_div" v-for="pass in passes">
                         <borrow-card :price='pass.price' :availability='pass.availableFrom + " - " + pass.availableTo' :id='pass.id'></borrow-card>
+                        <div v-show="currentUser.email === pass.email" @click="removePass(pass.id)" class="remove_card">
+                            <span>&times;</span>
+                        </div>
                     </div>
                 </div>
                 <div v-for="pass in passes">
@@ -77,38 +83,18 @@
                                     <div class="share_form">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <label for="fname">First Name:</label>
-                                                <input v-model="addedFName" autocomplete='given-name' type="text" class="form-control" id="fname" placeholder="First Name">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="lname">Last Name:</label>
-                                                <input v-model="addedLName" autocomplete='family-name' type="text" class="form-control" id="lname" placeholder="Last Name">
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label for="email">Email:</label>
-                                                <input v-model="addedEmail" autocomplete='email' type="email" class="form-control" id="email" placeholder="Email Address">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="phone">Phone:</label>
-                                                <input v-model="addedPhone" autocomplete='tel-national' type="text" class="form-control" id="phone" placeholder="Phone Number">
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
                                                 <label for="startDate">Start Date:</label>
-                                                <input v-model="addedAvailableFrom" type="text" class="form-control" id="startDate" placeholder="Start Date" />
+                                                <input required v-model="addedAvailableFrom" type="text" class="form-control" id="startDate" placeholder="Start Date" />
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="endDate">End Date:</label>
-                                                <input v-model="addedAvailableTo" type="text" class="form-control" id="endDate" placeholder="End Date" />
+                                                <input required v-model="addedAvailableTo" type="text" class="form-control" id="endDate" placeholder="End Date" />
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-12">
                                                 <label for="price">Price:</label>
-                                                <input v-model="addedPrice" type="text" class="form-control" id="price" placeholder="$ Price" />
+                                                <input required v-model="addedPrice" type="text" class="form-control" id="price" placeholder="$ Price" />
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -137,7 +123,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM="
         crossorigin="anonymous"></script>
     <!-- Vue -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.min.js"></script>
     <!-- Custom JS -->
     <script src="scripts/script.js"></script>
 </body>

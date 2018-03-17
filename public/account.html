@@ -6,7 +6,7 @@
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
-    <!-- pooper.js CDN -->
+    <!-- popper.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
     <!-- Bootstrap CSS -->
@@ -36,6 +36,9 @@
                         <a v-if="currentURL === item.link" class="nav-link active" :href="item.link">{{ item.text }}</a>
                         <a v-else class="nav-link" :href="item.link">{{ item.text }}</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" @click="logout">Log Out</a>
+                    </li>
                 </div>
             </ul>
         </div>
@@ -45,25 +48,25 @@
             <img class="image-fluid" id="cover" src="../media/img/cover.jpg">
         </div>
         <h1 class="text-center">
-            Create an Account
+            Edit Account Details
         </h1>
         <hr>
         <div id="readable_center">
-            <form id="app6" action="https://formspree.io/cling.eric@gmail.com" method="POST">
+            <form id="app5" v-on:submit.prevent="editUser">
                 <div class="form-row form_breathing_room">
                     <div class="col-md-6">
                         <label for="firstName">Enter First Name:</label>
-                        <input autocomplete="given-name" type="text" class="form-control" id="firstName" placeholder="First Name">
+                        <input required v-model="addedFName" autocomplete="given-name" type="text" class="form-control" id="firstName" placeholder="First Name">
                     </div>
                     <div class="col-md-6">
                         <label for="lastName">Enter Last Name:</label>
-                        <input autocomplete="family-name" type="text" class="form-control" id="lastName" placeholder="Last Name">
+                        <input required v-model="addedLName" autocomplete="family-name" type="text" class="form-control" id="lastName" placeholder="Last Name">
                     </div>
                 </div>
                 <div class="form-row form_breathing_room">
                     <div class="col-md-12">
                         <label for="email">Enter BYU.EDU Email Address:</label>
-                        <input autocomplete="email" type="email" class="form-control" id="email" placeholder="Email Address">
+                        <input required v-model="addedEmail" autocomplete="email" type="email" class="form-control" id="email" placeholder="Email Address">
                         <small id="emailInfo" class="form-text text-muted">Why BYU.EDU? This helps to make sure that ROCExchange is limited to BYU students only. More information
                             on how to get a BYU.EDU email address,
                             <a href="https://eam.byu.edu/eam/">visit this site.</a>
@@ -71,13 +74,20 @@
                     </div>
                 </div>
                 <div class="form-row form_breathing_room">
+                    <div class="col-md-12">
+                        <label for="email">Enter BYU.EDU Email Address:</label>
+                        <input required v-model="addedPhone" autocomplete="phone" type="text" class="form-control" id="phone" placeholder="Phone Number">
+                    </div>
+                </div>
+                <div class="form-row form_breathing_room">
                     <div class="col-md-6">
                         <label for="password">Enter Password:</label>
-                        <input autocomplete="new-password" type="password" class="form-control" id="password" placeholder="Password">
+                        <input required v-model="addedPassword" autocomplete="new-password" type="password" class="form-control" id="password" placeholder="Password">
                     </div>
                     <div class="col-md-6">
                         <label for="confirmPassword">Re-enter Password:</label>
-                        <input autocomplete="new-password" type="password" class="form-control" id="confirmPassword" placeholder="Password">
+                        <input required v-model="addedPassword2" autocomplete="new-password" type="password" class="form-control" id="confirmPassword"
+                            placeholder="Password">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -89,12 +99,13 @@
             <roc-footer></roc-footer>
         </footer>
     </footer>
+    <!-- Axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM="
+        crossorigin="anonymous"></script>
     <!-- Vue -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.min.js"></script>
     <!-- Custom JS -->
     <script src="scripts/script.js"></script>
-    <!-- Custom Vue Validation -->
-    <script src="https://cdn.jsdelivr.net/npm/vee-validate@latest/dist/vee-validate.js"></script>
 </body>
 
 </html>

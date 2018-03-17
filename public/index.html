@@ -13,8 +13,6 @@
         crossorigin="anonymous"></script>
     <!-- Custom Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Inconsolata|Merriweather" rel="stylesheet">
-    <!-- Buefy Icons  -->
-    <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../styles/site.css">
 
@@ -44,11 +42,11 @@
             <div class="form_breathing_room">
                 <div class="form-group">
                     <label for="email">Email address</label>
-                    <input type="email" v-model="addedEmail" class="form-control" id="email" placeholder="Email">
+                    <input required type="email" v-model="addedEmail" class="form-control" id="email" placeholder="Email">
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password">
+                    <input required type="password" class="form-control" id="password" placeholder="Password">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-large btn-primary">Login</button>
@@ -68,29 +66,31 @@
                     </div>
                     <div class="modal-body">
                         <div class="share_form">
-                            <h6>
+                            <h6 class="modal-subtitle">
+                                <hr>
                                 <strong>Email wasn't found. Please try again or sign up</strong>
+                                <hr>
                             </h6>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="fname">First Name:</label>
-                                    <input v-model="addedFName" autocomplete='given-name' type="text" class="form-control" id="fname" placeholder="First Name">
+                                    <input required v-model="addedFName" autocomplete='given-name' type="text" class="form-control" id="fname" placeholder="First Name">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="lname">Last Name:</label>
-                                    <input v-model="addedLName" autocomplete='family-name' type="text" class="form-control" id="lname" placeholder="Last Name">
+                                    <input required v-model="addedLName" autocomplete='family-name' type="text" class="form-control" id="lname" placeholder="Last Name">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="phone">Phone:</label>
-                                    <input v-model="addedPhone" autocomplete='tel-national' type="text" class="form-control" id="phone" placeholder="Phone Number">
+                                    <input required v-model="addedPhone" autocomplete='tel-national' type="text" class="form-control" id="phone" placeholder="Phone Number">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="email">Email:</label>
-                                    <input v-model="addedEmail" autocomplete='email' type="email" class="form-control" id="email" placeholder="Email Address">
+                                    <input required v-model="addedEmail" autocomplete='email' type="email" class="form-control" id="email" placeholder="Email Address">
                                     <small class="form-text text-muted">Why BYU.EDU? This helps to make sure that ROCExchange is limited to BYU students only.
                                         For more information on how to get a BYU.EDU email address,
                                         <a href="https://eam.byu.edu/eam/">visit this site.</a>
@@ -100,11 +100,11 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="password">Password:</label>
-                                    <input v-model="addedPassword" autocomplete='password' type="password" class="form-control" id="password" placeholder="Password">
+                                    <input required v-model="addedPassword" autocomplete='password' type="password" class="form-control" id="password" placeholder="Password">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="password2">Password Confirmation:</label>
-                                    <input v-model="addedPassword2" type="password" class="form-control" id="password2" placeholder="Password">
+                                    <input required v-model="addedPassword2" type="password" class="form-control" id="password2" placeholder="Password">
                                 </div>
                             </div>
                         </div>
