@@ -1,3 +1,11 @@
+Vue.component('beta-warning',{
+    template:
+        `
+        <p id="beta-warning">
+        <strong>THIS SITE IS IN BETA</strong>. Please DO NOT enter any private information like a real email address, phone number, name, or password. Added security will come in future updates. Thanks! :)
+        </p>
+        `})
+
 Vue.component('roc-footer', {
     template:
         `<div id="foot">

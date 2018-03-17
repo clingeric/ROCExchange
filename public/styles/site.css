@@ -195,3 +195,9 @@ body {
 .card_div {
     position: relative;
 }
+
+#beta-warning {
+    background-color: red;
+    color: white;
+    text-align: center;
+}
