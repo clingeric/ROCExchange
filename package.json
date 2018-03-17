@@ -1,0 +1,27 @@
+{
+  "name": "rocswap",
+  "version": "1.0.0",
+  "description": "Open-source, Vue-based, webpack, node.js project to help BYU students easily swap ROC passes.",
+  "main": "server.js",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "vue": "^2.5.16"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clingeric/ROCSwap.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clingeric/ROCSwap/issues"
+  },
+  "homepage": "https://github.com/clingeric/ROCSwap#readme"
+}
