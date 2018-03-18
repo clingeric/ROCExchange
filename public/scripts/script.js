@@ -1,4 +1,4 @@
-Vue.component('beta-warning',{
+Vue.component('beta-warning', {
     template:
         `
         <p id="beta-warning">
@@ -97,7 +97,7 @@ Vue.component('borrow-card', {
             </a>
             <div class="borrow_body text-center">
                 <h4>{{ availability }}</h4>
-                <h5>{{ price }}</h5>
+                <h5>$\{{ price }}</h5>
             </div>
         </div>
         `
@@ -147,6 +147,28 @@ var app3 = new Vue({
         addedPrice: '',
         submitted: false,
         currentUser: '',
+        show: '',
+    },
+    computed: {
+        filteredPasses: function () {
+            if (this.show === 'dateLow')
+                return this.passes.sort(function (pass1, pass2) {
+                    return pass1.availableFrom - pass2.availableFrom
+                });
+            if (this.show === 'dateHigh')
+                return this.passes.sort(function (pass1, pass2) {
+                    return pass2.availableFrom - pass1.availableFrom
+                });
+            if (this.show === 'priceLow')
+                return this.passes.sort(function (pass1, pass2) {
+                    return parseInt(pass1.price) - parseInt(pass2.price)
+                });
+            if (this.show === 'priceHigh')
+                return this.passes.sort(function (pass1, pass2) {
+                    return parseInt(pass2.price) - parseInt(pass1.price)
+                });
+            return this.passes;
+        },
     },
     methods: {
         getCurrentUser: function () {
@@ -157,7 +179,18 @@ var app3 = new Vue({
 
             });
         },
-
+        priceHigh: function () {
+            this.show = 'priceHigh';
+        },
+        priceLow: function () {
+            this.show = 'priceLow';
+        },
+        dateHigh: function () {
+            this.show = 'dateHigh';
+        },
+        dateLow: function () {
+            this.show = 'dateLow';
+        },
         addPass: function () {
             axios.post("api/passes", {
                 fName: this.currentUser.fName,
@@ -166,7 +199,7 @@ var app3 = new Vue({
                 email: this.currentUser.email,
                 availableFrom: this.addedAvailableFrom,
                 availableTo: this.addedAvailableTo,
-                price: '$' + this.addedPrice,
+                price: this.addedPrice,
             }).then(response => {
                 this.addedAvailableFrom = '';
                 this.addedAvailableTo = '';
@@ -190,7 +223,7 @@ var app3 = new Vue({
 
             });
         },
-        removePass: function(id) {
+        removePass: function (id) {
             axios.delete('/api/passes/' + id).then(response => {
                 this.getPasses();
                 return true;
@@ -281,7 +314,6 @@ var app6 = new Vue({
 
             });
         },
-
         setCurrentUser: function (currentUser) {
             axios.post('api/user', {
                 userId: currentUser.userId,
@@ -333,6 +365,7 @@ var app7 = new Vue({
     },
     created: function () {
         this.getUsers();
+        $('#success_alert').hide();
     },
     methods: {
         getUsers: function () {
@@ -363,6 +396,7 @@ var app7 = new Vue({
 
             });
             $('#signUpModal').modal('hide');
+            $('#success_alert').show(10);
             app6.getUsers();
         }
     }

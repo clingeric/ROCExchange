@@ -30,7 +30,7 @@
         <div id="app1">
             <beta-warning></beta-warning>
             <ul class="nav nav-tabs navbar-dark navbar-expand-md justify-content-between">
-                <a id="brand" class="navbar-brand">ROCSwap</a>
+                <a href="/swap.html" id="brand" class="navbar-brand">ROCSwap</a>
                 <button id="responsiveNav" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -49,28 +49,59 @@
     <main>
         <div id="banner">
             <img class="image-fluid" id="cover" src="../media/img/cover.jpg">
+            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#share-modal">
+                <h3>Share Pass</h3>
+            </button>
         </div>
         <div id="readable-center">
             <div id="app3">
                 <div id="splash">
                     <h2 class="text-center">Welcome {{ currentUser.fName }}!</h2>
+                    <hr>
                 </div>
-                <div id="no_pass" v-if="passes.length === 0">
+                <div id="no_pass" v-if="filteredPasses.length === 0">
                     <h3>It looks like there are no passes to swap :(</h3>
                     <h4>But we'd love for you to share one!</h4>
                 </div>
-                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#share-modal">
-                    Share Pass
-                </button>
+                <div v-else class="text-center">
+                    <div class="filters">
+                        <label for="price-filters">
+                            <h4>Sort By Price:</h4>
+                        </label>
+                        <br>
+                        <div id="price-filters" class="btn-group" role="group">
+                            <a @click="priceLow">
+                                <button type="button" class="btn btn-primary"> Low to High </button>
+                            </a>
+                            <a @click="priceHigh">
+                                <button type="button" class="btn btn-primary"> High to Low </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="filters">
+                        <label for="date-filters">
+                            <h4>Sort By Date:</h4>
+                        </label>
+                        <br>
+                        <div id="date-filters" class="btn-group" role="group">
+                            <a @click="dateLow">
+                                <button type="button" class="btn btn-primary"> Low to High </button>
+                            </a>
+                            <a @click="dateHigh">
+                                <button type="button" class="btn btn-primary"> High to Low </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-3" class="card_div" v-for="pass in passes">
+                    <div class="col-lg-4 col-md-3" class="card_div" v-for="pass in filteredPasses">
                         <borrow-card :price='pass.price' :availability='pass.availableFrom + " - " + pass.availableTo' :id='pass.id'></borrow-card>
                         <div v-show="currentUser.email === pass.email" @click="removePass(pass.id)" class="remove_card">
                             <span>&times;</span>
                         </div>
                     </div>
                 </div>
-                <div v-for="pass in passes">
+                <div v-for="pass in filteredPasses">
                     <borrow-modal :fname='pass.fName' :lname='pass.lName' :phone='pass.phone' :email='pass.email' :id='pass.id'></borrow-modal>
                 </div>
                 <div class="modal fade text-center" id="share-modal" tabindex="-1" role="dialog">

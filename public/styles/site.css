@@ -3,19 +3,18 @@ body {
     padding-bottom: 10rem;
 }
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 #banner {
     text-align: center;
-    /* background-image: url(../media/img/cover.jpg);
-    background-size: 100% 16rem;
-    background-repeat: no-repeat;
-    background-position: top; */
     background-color: lightgrey;
     max-width: 100%;
     height: auto;
     margin-bottom: 1rem;
-    margin-top: 1rem;
-    
-    
+    margin-top: 1rem;   
 }
 
 #cover {
@@ -200,4 +199,8 @@ body {
     background-color: red;
     color: white;
     text-align: center;
+}
+
+.filters {
+    display: inline-block;
 }
